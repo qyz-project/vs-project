@@ -2,10 +2,14 @@
   "name": "vs-project",
   "version": "1.0.0",
   "description": "A project for subject Distributed System of FH Vienna",
-  "main": "index.js",
+  "main": "dist/index.js",
   "scripts": {
+    "build": "tsc -p tsconfig.json",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/qyz-project/vs-project.git"
@@ -19,5 +23,8 @@
   "bugs": {
     "url": "https://github.com/qyz-project/vs-project/issues"
   },
-  "homepage": "https://github.com/qyz-project/vs-project#readme"
+  "homepage": "https://github.com/qyz-project/vs-project#readme",
+  "devDependencies": {
+    "typescript": "^3.9.5"
+  }
 }
