@@ -1,0 +1,23 @@
+{
+  "name": "vs-project",
+  "version": "1.0.0",
+  "description": "A project for subject Distributed System of FH Vienna",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/qyz-project/vs-project.git"
+  },
+  "author": "Xingwei Zhang <756913602@qq.com>",
+  "contributors": [
+    "Meiting Qi <olivia335674190@gmail.com>",
+    "Jiahan Yu <yujiahan1124@gmail.com>"
+  ],
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/qyz-project/vs-project/issues"
+  },
+  "homepage": "https://github.com/qyz-project/vs-project#readme"
+}
