@@ -17,7 +17,7 @@ export class Weather {
    * constructor
    * @param apiKey api key
    */
-  constructor (city: string, apiKey: string = Weather.DEFAULT_API_KEY) {
+  constructor (city: string = 'vienna', apiKey: string = Weather.DEFAULT_API_KEY) {
     this.city = city
     this.apiKey = apiKey
   }
