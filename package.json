@@ -8,9 +8,11 @@
     "test": "jest",
     "lint": "eslint src/**/*.ts",
     "weather-dev": "ts-node src/weather-ws-server",
+    "smart-dev": "ts-node src/smarthome-rest-server",
     "next-dev": "cd next-app && next",
     "next-build": "cd next-app && next build",
-    "next-start": "cd next-app && next start"
+    "next-start": "cd next-app && next start",
+    "start": "npm-run-all next-dev smart-dev weather-dev"
   },
   "files": [
     "dist"
@@ -43,6 +45,7 @@
     "eslint-plugin-react": "^7.20.0",
     "eslint-plugin-standard": "^4.0.1",
     "jest": "^26.0.1",
+    "npm-run-all": "^4.1.5",
     "ts-jest": "^26.1.0",
     "typescript": "^3.9.5"
   },
