@@ -1,7 +1,7 @@
 import React from 'react'
 
-import { Weather } from '../src/weather-ws-client'
-import { Forecast } from '../src/WeatherData'
+import { Weather } from '../libs/weather-ws-client'
+import { Forecast } from '../../src/WeatherData'
 
 const IndexPage = () => {
   const [temp, setTemp] = React.useState(0)
@@ -12,14 +12,18 @@ const IndexPage = () => {
   React.useEffect(() => {
     const weather = new Weather()
     weather.ready().then(() => {
-      setInterval(async () => {
-        setTemp(await weather.getTemp())
-        const wind = await weather.getWind()
-        const forecast = await weather.getForecasts()
-        setWindSpeed(wind.speed)
-        setWindDrection(wind.direction)
-        setForcastsArray(forecast)
-      }, 30000)
+      const fn = async () => {
+        try {
+          setTemp((await weather.getTemp()) || NaN)
+          const wind = await weather.getWind()
+          const forecast = await weather.getForecasts()
+          setWindSpeed(wind?.speed || NaN)
+          setWindDrection(wind?.direction || NaN)
+          setForcastsArray(forecast instanceof Array ? forecast : [])
+        } catch (err) {}
+        setTimeout(fn, 5 * 1000) // 60 sec
+      }
+      fn()
     })
   })
 
