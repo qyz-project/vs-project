@@ -9,6 +9,8 @@ const IndexPage = () => {
   const [windDrection, setWindDrection] = React.useState(0)
   const [forcastsArray, setForcastsArray] = React.useState<Array<Forecast>>([])
 
+  const [timeoutHandle, setTimeoutHandle] = React.useState<ReturnType<typeof setTimeout> | void>()
+
   React.useEffect(() => {
     const weather = new Weather()
     weather.ready().then(() => {
@@ -21,10 +23,15 @@ const IndexPage = () => {
           setWindDrection(wind?.direction || NaN)
           setForcastsArray(forecast instanceof Array ? forecast : [])
         } catch (err) {}
-        setTimeout(fn, 5 * 1000) // 60 sec
+        setTimeoutHandle(setTimeout(fn, 5 * 1000)) // 60 sec
       }
       fn()
     })
+    return () => {
+      if (timeoutHandle) {
+        clearTimeout(timeoutHandle)
+      }
+    }
   })
 
   const next7Days = forcastsArray.map((o, i) => {
