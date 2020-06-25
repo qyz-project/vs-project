@@ -48,19 +48,19 @@ function main () {
         switch (m) {
           case 'temp': {
             const d = JSON.stringify(await weather.getTemp())
-            // console.log(d)
+            console.log(d)
             client.send(d)
             return
           }
           case 'wind': {
             const d = JSON.stringify(await weather.getWind())
-            // console.log(d)
+            console.log(d)
             client.send(d)
             return
           }
           case 'forecast': {
             const d = JSON.stringify(await weather.getForecasts())
-            // console.log(d)
+            console.log(d)
             client.send(d)
           }
         }
@@ -70,3 +70,4 @@ function main () {
 }
 
 main()
+console.log('started')
