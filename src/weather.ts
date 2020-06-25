@@ -18,6 +18,62 @@ export class Weather {
 
   protected city: string
 
+  protected lastUpdateDate = -1
+
+  /**
+   * check if buffer outdated, if it's outdated then update
+   * @param time time
+   */
+  protected async checkOutdated (time = 60) {
+    const now = Date.now()
+    if (
+      (this.lastUpdateDate + time * 1000 < now) ||
+      this.temp === undefined ||
+      this.wind === undefined ||
+      this.forecasts === undefined
+    ) {
+      try {
+        const response = await axios.get(`${this.host}/weather?q=${this.city}&appid=${this.apiKey}&units=metric`)
+        const res = Number(response?.data?.main?.temp)
+        const speed = Number(response?.data?.wind?.speed)
+        const direction = Number(response?.data?.wind?.deg)
+        if (!isNaN(res)) {
+          this.temp = res
+        }
+        if (!(isNaN(speed) || isNaN(direction))) {
+          const res = { speed, direction }
+          this.wind = res
+        }
+      } catch (err) {
+        console.error(err.toString())
+      }
+      try {
+        const response0 = await axios.get(`${this.host}/weather?q=${this.city}&appid=${this.apiKey}&units=metric`)
+        const lon: number = response0?.data?.coord?.lon
+        const lat: number = response0?.data?.coord?.lat
+
+        const response1 = await axios.get(`${this.host}/onecall?appid=${this.apiKey}&units=metric&lat=${lat}&lon=${lon}`)
+        let forecastArray: any[] | undefined = response1?.data?.daily
+        const res: Forecast[] = []
+        if (forecastArray instanceof Array) {
+          forecastArray = forecastArray.slice(0, 7)
+          for (const forecast of forecastArray) {
+            res.push({
+              temp: forecast.temp.day,
+              wind: {
+                speed: forecast.wind_speed,
+                direction: forecast.wind_deg
+              }
+            })
+          }
+          this.forecasts = res
+        }
+      } catch (err) {
+        console.error(err.toString())
+      }
+    }
+  }
+
   /**
    * constructor
    * @param apiKey api key
@@ -35,75 +91,36 @@ export class Weather {
     this.city = city
   }
 
+  protected temp?: number
+
   /**
    * get current temperature
    * @returns temperature (in promise)
    */
   async getTemp (): Promise<number | undefined> {
-    try {
-      const response = await axios.get(`${this.host}/weather?q=${this.city}&appid=${this.apiKey}&units=metric`)
-      const res = Number(response?.data?.main?.temp)
-      if (isNaN(res)) {
-        return undefined
-      } else {
-        return res
-      }
-    } catch (err) {
-      console.error(err.toString())
-      return undefined
-    }
+    await this.checkOutdated()
+    return this.temp
   }
+
+  protected wind?: WindState
 
   /**
    * get current wind state
    * @returns temperature (in promise)
    */
   async getWind (): Promise<WindState | undefined> {
-    try {
-      const response = await axios.get(`${this.host}/weather?q=${this.city}&appid=${this.apiKey}&units=metric`)
-      const speed = Number(response?.data?.wind?.speed)
-      const direction = Number(response?.data?.wind?.deg)
-      if (isNaN(speed) || isNaN(direction)) {
-        return undefined
-      } else {
-        return { speed, direction }
-      }
-    } catch (err) {
-      console.error(err.toString())
-      return undefined
-    }
+    await this.checkOutdated()
+    return this.wind
   }
+
+  protected forecasts?: Forecast[]
 
   /**
    * get forecast of future 7 days
    * @returns array of temperature and wind state (in promise)
    */
   async getForecasts (): Promise<Array<Forecast> | undefined> {
-    try {
-      const response0 = await axios.get(`${this.host}/weather?q=${this.city}&appid=${this.apiKey}&units=metric`)
-      const lon: number = response0?.data?.coord?.lon
-      const lat: number = response0?.data?.coord?.lat
-
-      const response1 = await axios.get(`${this.host}/onecall?appid=${this.apiKey}&units=metric&lat=${lat}&lon=${lon}`)
-      let forecastArray: any[] | undefined = response1?.data?.daily
-      const res: Forecast[] = []
-      if (!(forecastArray instanceof Array)) {
-        return undefined
-      }
-      forecastArray = forecastArray.slice(0, 7)
-      for (const forecast of forecastArray) {
-        res.push({
-          temp: forecast.temp.day,
-          wind: {
-            speed: forecast.wind_speed,
-            direction: forecast.wind_deg
-          }
-        })
-      }
-      return res
-    } catch (err) {
-      console.error(err.toString())
-      return undefined
-    }
+    await this.checkOutdated()
+    return this.forecasts
   }
 }
