@@ -1,4 +1,5 @@
 export default {
+  host: 'localhost',
   port: {
     weather: 8081
   },
