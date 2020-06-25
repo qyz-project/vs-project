@@ -62,7 +62,8 @@
     "jsx": "preserve"
   },
   "include": [
-    "src/**/*"
+    "src/**/*",
+    "next-app/libs/**/*.ts"
   ],
   "exclude": [
     "node_modules"
