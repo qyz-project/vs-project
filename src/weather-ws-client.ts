@@ -1,37 +1,7 @@
 // use web socket api of browser
 import config from './config'
-import { Forcast, WindState } from './WeatherData'
-
-// Create WebSocket connection.
-const socket = new WebSocket(`ws://localhost:${config.port.weather}`)
-
-/**
- * wait when cocket open
- * @param message message
- */
-async function open (): Promise<void> {
-  await new Promise((resolve, reject) => {
-    socket.addEventListener('open', function (event) {
-      resolve()
-    }, { once: true })
-  })
-}
-
-/**
- * send a message to remote
- * @param message message
- */
-function send (message: string) {
-  socket.send(message)
-}
-
-async function get (): Promise<string> {
-  return await new Promise<string>((resolve, reject) => {
-    socket.addEventListener('message', function (event) {
-      resolve(event.data)
-    }, { once: true })
-  })
-}
+import { Forecast, WindState } from './WeatherData'
+import WebSocket from 'isomorphic-ws'
 
 /**
  * this class handle everything abould weather
@@ -43,12 +13,54 @@ export class Weather {
    */
   static readonly DEFAULT_API_KEY = config.api.weather
 
+  // Create WebSocket connection.
+  protected socket = new WebSocket(`ws://${config.host}:${config.port.weather}`)
+
+  /**
+   * wait when cocket open
+   * @param message message
+   */
+  protected async open (): Promise<void> {
+    await new Promise((resolve, reject) => {
+      ;(this.socket as any).addEventListener('open', function (event: any) {
+        resolve()
+      }, { once: true })
+    })
+  }
+
+  /**
+   * send a message to remote
+   * @param message message
+   */
+  protected send (message: string) {
+    this.socket.send(message)
+  }
+
+  /**
+   * get a data from websocket
+   * @return string data
+   */
+  protected async get (): Promise<string> {
+    return await new Promise<string>((resolve, reject) => {
+      ;(this.socket as any).addEventListener('message', function (event: any) {
+        resolve(event.data)
+      }, { once: true })
+    })
+  }
+
+  /**
+   * get ready
+   */
+  async ready (): Promise<void> {
+    await this.open()
+  }
+
   /**
    * set curretn city
    * @param city city
    */
   setCity (city: string) {
-    send(`city=${city}`)
+    this.send(`city=${city}`)
   }
 
   /**
@@ -56,8 +68,8 @@ export class Weather {
    * @returns temperature (in promise)
    */
   async getTemp (): Promise<number | undefined> {
-    send('temp')
-    return Number(await get())
+    this.send('temp')
+    return Number(await this.get())
   }
 
   /**
@@ -65,16 +77,16 @@ export class Weather {
    * @returns temperature (in promise)
    */
   async getWind (): Promise<WindState | undefined> {
-    send('wind')
-    return JSON.parse(await get())
+    this.send('wind')
+    return JSON.parse(await this.get())
   }
 
   /**
    * get forecast of future 7 days
    * @returns array of temperature and wind state (in promise)
    */
-  async getForecasts (): Promise<Array<Forcast> | undefined> {
-    send('forecast')
-    return JSON.parse(await get())
+  async getForecasts (): Promise<Array<Forecast> | undefined> {
+    this.send('forecast')
+    return JSON.parse(await this.get())
   }
 }
