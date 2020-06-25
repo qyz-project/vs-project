@@ -4,9 +4,12 @@
   "description": "A project for subject Distributed System of FH Vienna",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc -p tsconfig.json",
+    "tsc-build": "tsc -p tsconfig.json",
     "test": "jest",
-    "lint": "eslint src/**/*.ts"
+    "lint": "eslint src/**/*.ts",
+    "next-dev": "next",
+    "next-build": "next build",
+    "next-start": "next start"
   },
   "files": [
     "dist"
