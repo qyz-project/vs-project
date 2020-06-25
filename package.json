@@ -12,7 +12,7 @@
     "next-dev": "cd next-app && next",
     "next-build": "cd next-app && next build",
     "next-start": "cd next-app && next start",
-    "start": "npm-run-all next-dev smart-dev weather-dev"
+    "start": "npm-run-all -p next-dev smart-dev weather-dev"
   },
   "files": [
     "dist"
