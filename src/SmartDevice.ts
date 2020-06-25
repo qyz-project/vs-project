@@ -11,7 +11,7 @@ export interface IDevice extends IDeviceWithoutId {
 export interface IRoom {
   name: string
   id: number
-  diveces: Array<number>
+  devices: number[]
 }
 
 export interface IStore {
