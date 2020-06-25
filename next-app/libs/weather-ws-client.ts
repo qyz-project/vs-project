@@ -1,8 +1,8 @@
 // weather api client stub
 
 // use web socket api of browser
-import config from './config'
-import { Forecast, WindState } from './WeatherData'
+import config from '../../src/config'
+import { Forecast, WindState } from '../../src/WeatherData'
 import WebSocket from 'isomorphic-ws'
 
 /**
