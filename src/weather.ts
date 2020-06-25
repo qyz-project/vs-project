@@ -1,4 +1,5 @@
 import axios from 'axios'
+import config from './config'
 
 /**
  * this class handle everything abould weather
@@ -8,7 +9,7 @@ export class Weather {
   /**
    * default api for https://openweathermap.org/
    */
-  static readonly DEFAULT_API_KEY = '47ebbc8d3c411548c79f8954777f9792'
+  static readonly DEFAULT_API_KEY = config.api.weather
   protected readonly apiKey: string
   protected readonly city: string
   protected readonly host: string = 'http://api.openweathermap.org/data/2.5'
@@ -17,7 +18,7 @@ export class Weather {
    * constructor
    * @param apiKey api key
    */
-  constructor (city: string = 'vienna', apiKey: string = Weather.DEFAULT_API_KEY) {
+  constructor (city: string = config.defaultCity, apiKey: string = Weather.DEFAULT_API_KEY) {
     this.city = city
     this.apiKey = apiKey
   }
