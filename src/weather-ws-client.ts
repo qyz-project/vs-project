@@ -1,8 +1,5 @@
 // use web socket api of browser
 import config from './config'
-
-import axios from 'axios'
-import config from './config'
 import { Forcast, WindState } from './WeatherData'
 
 // Create WebSocket connection.
