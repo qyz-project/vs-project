@@ -1,6 +1,6 @@
 import axios from 'axios'
 import config from './config'
-import { Forcast, WindState } from './WeatherData'
+import { Forecast, WindState } from './WeatherData'
 
 /**
  * this class handle everything abould weather
@@ -76,7 +76,7 @@ export class Weather {
    * get forecast of future 7 days
    * @returns array of temperature and wind state (in promise)
    */
-  async getForecasts (): Promise<Array<Forcast> | undefined> {
+  async getForecasts (): Promise<Array<Forecast> | undefined> {
     try {
       const response0 = await axios.get(`${this.host}/weather?q=${this.city}&appid=${this.apiKey}&units=metric`)
       const lon: number = response0?.data?.coord?.lon
@@ -84,7 +84,7 @@ export class Weather {
 
       const response1 = await axios.get(`${this.host}/onecall?appid=${this.apiKey}&units=metric&lat=${lat}&lon=${lon}`)
       let forecastArray: any[] | undefined = response1?.data?.daily
-      const res: Forcast[] = []
+      const res: Forecast[] = []
       if (!(forecastArray instanceof Array)) {
         return undefined
       }

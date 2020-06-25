@@ -10,7 +10,7 @@ export interface WindState {
 /**
  * forcast
  */
-export interface Forcast {
+export interface Forecast {
     wind: {
       speed: number
       direction: number
