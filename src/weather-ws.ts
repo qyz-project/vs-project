@@ -29,7 +29,7 @@ const server = new Server({
 const weather = new Weather()
 
 server.on('connection', (client) => {
-  client.on('message', (message) => {
+  client.on('message', async (message) => {
     const m: string = String(message)
 
     if (m.match('=')) {
@@ -44,15 +44,21 @@ server.on('connection', (client) => {
     } else {
       switch (m) {
         case 'temp': {
-          client.send(JSON.stringify(weather.getTemp()))
+          const d = JSON.stringify(await weather.getTemp())
+          // console.log(d)
+          client.send(d)
           return
         }
         case 'wind': {
-          client.send(JSON.stringify(weather.getWind()))
+          const d = JSON.stringify(await weather.getWind())
+          // console.log(d)
+          client.send(d)
           return
         }
         case 'forecast': {
-          client.send(JSON.stringify(weather.getForecasts()))
+          const d = JSON.stringify(await weather.getForecasts())
+          // console.log(d)
+          client.send(d)
         }
       }
     }
