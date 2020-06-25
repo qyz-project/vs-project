@@ -8,12 +8,14 @@ describe('class Weather', () => {
   })
 
   test('weather.getTemp() ', async () => {
+    weather = new Weather('Vienna')
     expect(typeof weather.getTemp).toBe('function')
     expect(typeof await weather.getTemp()).toBe('number')
     expect(isNaN(await weather.getTemp() as number)).toBeFalsy()
   })
 
   test('weather.getTemp() ', async () => {
+    weather = new Weather('Vienna')
     expect(typeof weather.getWind).toBe('function')
     const res = await weather.getWind()
     expect(typeof res).toBe('object')
