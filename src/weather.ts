@@ -1,3 +1,5 @@
+// weather api
+// connect remote service provider from server side
 import axios from 'axios'
 import config from './config'
 import { Forecast, WindState } from './WeatherData'

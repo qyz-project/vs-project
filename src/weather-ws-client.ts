@@ -1,3 +1,5 @@
+// weather api client stub
+
 // use web socket api of browser
 import config from './config'
 import { Forecast, WindState } from './WeatherData'

@@ -1,3 +1,4 @@
+// configuration
 export default {
   host: 'localhost',
   port: {
