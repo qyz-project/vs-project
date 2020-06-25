@@ -7,6 +7,7 @@
     "tsc-build": "tsc -p tsconfig.json",
     "test": "jest",
     "lint": "eslint src/**/*.ts",
+    "weather-dev": "ts-node src/weather-ws-server",
     "next-dev": "next",
     "next-build": "next build",
     "next-start": "next start"
