@@ -35,6 +35,7 @@ function main () {
     client.on('message', async (message) => {
       const m: string = String(message)
 
+      // cuty=shanghai
       if (m.match('=')) {
         if (m.match('=')) {
           const [name, value] = m.split('=')
