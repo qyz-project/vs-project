@@ -15,6 +15,10 @@
 
 ## directory structure
 
+* `.eslintignore` - eslint ignore files
+* `.eslintrc` - config for eslint
+* `.gitattributes` - set git attributes
+* `.gitignore` - what files and dir should git ignore
 * `jest.config.js` - jset testing framwork confugration file
 * `next-env.d.ts` - type declaration for next framwork
 * `package.json` - package metadata for npm (yarn)
