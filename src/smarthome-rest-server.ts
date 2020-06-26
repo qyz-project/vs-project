@@ -38,7 +38,7 @@ app.put('/device/:id/value/:value', (req, res) => {
 
 // add new device
 app.post('/device', (req, res) => {
-  const d = api.addDevice(JSON.parse(req.body))
+  const d = api.addDevice(req.body)
   res.end(JSON.stringify(d, undefined, 4))
 })
 
