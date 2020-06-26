@@ -41,7 +41,7 @@ app.post('/device', (req, res) => {
   res.end(JSON.stringify(d, undefined, 4))
 })
 
-// get device from room
+// get room info
 app.get('/room/:roomId/', (req, res) => {
   const d = api.getRoom(Number(req.params.roomId))
   res.end(JSON.stringify(d, undefined, 4))
