@@ -1,6 +1,7 @@
 import express from 'express'
 import * as parser from 'body-parser'
 import * as api from './smarthome-store-api'
+import config from './config'
 
 const app = express()
 
@@ -69,7 +70,7 @@ app.delete('/room/:roomId/device/:id', (req, res) => {
 
 async function main () {
   await api.main()
-  app.listen(8082)
+  app.listen(config.port.smart)
 }
 
 main()
