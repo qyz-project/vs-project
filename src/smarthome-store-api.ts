@@ -9,7 +9,7 @@ let data: IStore = {
 
 let motified = false
 
-async function start () {
+export async function start () {
   try {
     data = JSON.parse((await fs.readFile(dataFile)).toString())
   } catch (err) {
@@ -17,7 +17,7 @@ async function start () {
   }
 }
 
-async function sync () {
+export async function sync () {
   if (!motified) return
   try {
     await fs.writeFile(dataFile, JSON.stringify(data))
