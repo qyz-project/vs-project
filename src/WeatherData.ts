@@ -11,9 +11,6 @@ export interface WindState {
  * forcast
  */
 export interface Forecast {
-  wind: {
-    speed: number
-    direction: number
-  }
+  wind: WindState
   temp: number
 }
