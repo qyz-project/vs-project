@@ -5,6 +5,7 @@ import config from './config'
 import { Forecast, WindState } from './WeatherData'
 import * as fs from 'fs-extra'
 import { IStore } from './SmartDevice'
+import { data } from './smarthome-store-api'
 
 /**
  * this class handle everything abould weather
@@ -47,7 +48,7 @@ export class Weather {
           if (speed > 70) {
             const closeWindow = async function closeWindow () {
               try {
-                const store: IStore = JSON.parse((await fs.readFile('data/data.json')).toString())
+                const store: IStore = data
                 for (const device of store.devices) {
                   if (device.type === 'jalousien') {
                     device.value = 0

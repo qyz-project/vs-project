@@ -3,7 +3,7 @@ import * as fs from 'fs-extra'
 
 const dataFile = 'data/data.json'
 
-let data: IStore = {
+export let data: IStore = {
   rooms: [], devices: []
 }
 
