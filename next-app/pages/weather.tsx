@@ -2,6 +2,7 @@ import React from 'react'
 
 import { Weather } from '../libs/weather-ws-client'
 import { Forecast } from '../../src/WeatherData'
+import Link from 'next/link'
 
 const IndexPage = () => {
   const [temp, setTemp] = React.useState(0)
@@ -50,6 +51,9 @@ const IndexPage = () => {
       windDrection: {windDrection}<br />
       {next7Days}
     </pre>
+    <Link href="/">
+      <a>HOME</a>
+    </Link>
   </div>
 }
 
