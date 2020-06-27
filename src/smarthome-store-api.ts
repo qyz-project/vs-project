@@ -111,6 +111,95 @@ export function getDevices (): IDevice[] {
   return data.devices
 }
 
+let isPartyTime = false
+let partyTimeState = 0
+
+function partyModeRunner () {
+  if (isPartyTime) {
+    for (const d of data.devices) {
+      switch (d.id) {
+        case 0: {
+          d.value = 0
+          break
+        }
+        case 1: {
+          d.value = partyTimeState
+          partyTimeState = partyTimeState ? 0 : 1
+          break
+        }
+        case 2: {
+          d.value = 1
+          break
+        }
+        case 6: {
+          d.value = 0
+          break
+        }
+        case 7: {
+          d.value = 0
+          break
+        }
+      }
+    }
+  }
+}
+
+setInterval(partyModeRunner, 1000)
+
+export function partyModeOn (): IDevice[] {
+  isPartyTime = true
+  return data.devices
+}
+
+export function partyModeOff (): IDevice[] {
+  isPartyTime = false
+  return data.devices
+}
+
+export function readMode (): IDevice[] {
+  for (const d of data.devices) {
+    switch (d.id) {
+      case 1: {
+        d.value = 0
+        break
+      }
+      case 4: {
+        d.value = 0.7
+        break
+      }
+      case 5: {
+        d.value = 0.7
+        break
+      }
+    }
+  }
+  return data.devices
+}
+
+export function sleepMode (): IDevice[] {
+  for (const d of data.devices) {
+    switch (d.id) {
+      case 8: {
+        d.value = 0
+        break
+      }
+      case 1: {
+        d.value = 0
+        break
+      }
+      case 4: {
+        d.value = 0.1
+        break
+      }
+      case 5: {
+        d.value = 0
+        break
+      }
+    }
+  }
+  return data.devices
+}
+
 export async function main () {
   await start()
   setInterval(() => {

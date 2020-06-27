@@ -68,6 +68,30 @@ app.delete('/room/:roomId/device/:id', (req, res) => {
   res.end(JSON.stringify(d, undefined, 4))
 })
 
+// party mode on
+app.delete('/mode/party', (req, res) => {
+  const d = api.partyModeOn()
+  res.end(JSON.stringify(d, undefined, 4))
+})
+
+// party mode off
+app.delete('/mode/stop-party', (req, res) => {
+  const d = api.partyModeOff()
+  res.end(JSON.stringify(d, undefined, 4))
+})
+
+// read mode on
+app.delete('/mode/sleep', (req, res) => {
+  const d = api.readMode()
+  res.end(JSON.stringify(d, undefined, 4))
+})
+
+// sleep mode
+app.delete('/mode/sleep', (req, res) => {
+  const d = api.readMode()
+  res.end(JSON.stringify(d, undefined, 4))
+})
+
 async function main () {
   await api.main()
   app.listen(config.port.smart)
