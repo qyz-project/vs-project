@@ -5,7 +5,7 @@ import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Head from 'next/head'
 
-export default function Page (props: {children?: JSX.Element | never[]}) {
+export default function Page (props: { children?: JSX.Element | never[] }) {
   return (
     <>
       <Head>
@@ -24,25 +24,25 @@ export default function Page (props: {children?: JSX.Element | never[]}) {
           <Nav className="mr-auto">
             <Nav.Link>
               <Link href="/">
-                Weather
+                <a>Weather</a>
               </Link>
             </Nav.Link>
             <NavDropdown title="SmartHome" id="basic-nav-dropdown">
               <NavDropdown.Item>
                 <Link href="/room?id=8">
-                Livingroom
+                  <a>Livingroom</a>
                 </Link>
               </NavDropdown.Item>
               <NavDropdown.Item>
                 <Link href="/room?id=8">
-                Bedroom
+                  <a>Bedroom</a>
                 </Link>
               </NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
       </Navbar>
-      {props?.children ? props.children : undefined }
+      {props?.children ? props.children : undefined}
     </>
   )
 }
