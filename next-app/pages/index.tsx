@@ -3,9 +3,9 @@ import Page from '../components/Page'
 import { Weather } from '../libs/weather-ws-client'
 import { Forecast } from '../../src/WeatherData'
 import Card from 'react-bootstrap/Card'
-import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Jumbotron from 'react-bootstrap/Jumbotron'
+import Row from 'react-bootstrap/Row'
 
 export default function WeatherPage () {
   const [temp, setTemp] = React.useState(0)
@@ -54,14 +54,18 @@ export default function WeatherPage () {
   return (
     <Page>
       <Container>
-        <Jumbotron>
-          <h1>{temp} °C</h1>
-          <p>
+        <Row md={1}>
+          <Jumbotron>
+            <h1>{temp} °C</h1>
+            <p>
             windSpeed: {windSpeed} km/h<br />
             windDrection: {windDrection} °C<br />
-          </p>
-        </Jumbotron>
-        {next7Days}
+            </p>
+          </Jumbotron>
+        </Row>
+        <Row md={2}>
+          {next7Days}
+        </Row>
       </Container>
     </Page>
   )
