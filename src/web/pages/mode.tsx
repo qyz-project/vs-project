@@ -6,7 +6,7 @@ import Row from 'react-bootstrap/Row'
 import Container from 'react-bootstrap/Container'
 import Jumbotron from 'react-bootstrap/Jumbotron'
 import axios from 'axios'
-import config from '../../src/config'
+import config from '../../config'
 
 const rootUrl = 'http://' + config.host + ':' + config.port.smart
 
