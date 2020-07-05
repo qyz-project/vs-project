@@ -7,12 +7,10 @@
     "tsc-build": "tsc -p tsconfig.json",
     "test": "jest",
     "lint": "eslint src/**/*.ts",
-    "weather-dev": "ts-node src/weather-ws-server",
-    "smart-dev": "ts-node src/smarthome-rest-server",
-    "next-dev": "cd next-app && next",
-    "next-build": "cd next-app && next build",
-    "next-start": "cd next-app && next start",
-    "start": "npm-run-all -p next-dev smart-dev weather-dev"
+    "weather": "ts-node src/weather-ws-server",
+    "smart": "ts-node src/smarthome-rest-server",
+    "web": "ts-node src/web",
+    "start": "npm-run-all -p web smart weather"
   },
   "files": [
     "dist"
