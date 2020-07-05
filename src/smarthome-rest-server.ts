@@ -81,7 +81,7 @@ app.put('/mode/stop-party', (req, res) => {
 })
 
 // read mode on
-app.put('/mode/sleep', (req, res) => {
+app.put('/mode/read', (req, res) => {
   const d = api.readMode()
   res.end(JSON.stringify(d, undefined, 4))
 })
