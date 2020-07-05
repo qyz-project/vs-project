@@ -22,19 +22,19 @@ export default function Page (props: { children?: JSX.Element | never[] }) {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link>
-              <Link href="/">
-                <a>Weather</a>
-              </Link>
-            </Nav.Link>
+            <Link href="/">
+              <Nav.Link>
+                Weather
+              </Nav.Link>
+            </Link>
             <NavDropdown title="SmartHome" id="basic-nav-dropdown">
               <NavDropdown.Item>
-                <Link href="/room?id=8">
+                <Link href="/room?id=9">
                   <a>Livingroom</a>
                 </Link>
               </NavDropdown.Item>
               <NavDropdown.Item>
-                <Link href="/room?id=8">
+                <Link href="/room?id=10">
                   <a>Bedroom</a>
                 </Link>
               </NavDropdown.Item>
