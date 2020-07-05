@@ -27,7 +27,7 @@ export default function WeatherPage () {
           setWindDrection(wind?.direction || NaN)
           setForcastsArray(forecast instanceof Array ? forecast : [])
         } catch (err) {}
-        setTimeoutHandle(setTimeout(fn, 5 * 1000)) // 60 sec
+        setTimeoutHandle(setTimeout(fn, 60 * 1000)) // 60 sec
       }
       fn()
     })

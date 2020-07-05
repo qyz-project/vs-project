@@ -38,6 +38,16 @@ export default function Page (props: { children?: JSX.Element | never[] }) {
                   <a>Bedroom</a>
                 </Link>
               </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link href="/device">
+                  <a>Devices</a>
+                </Link>
+              </NavDropdown.Item>
+              <NavDropdown.Item>
+                <Link href="/mode">
+                  <a>Mode</a>
+                </Link>
+              </NavDropdown.Item>
             </NavDropdown>
           </Nav>
         </Navbar.Collapse>
