@@ -2,8 +2,11 @@ import express from 'express'
 import * as parser from 'body-parser'
 import * as api from './smarthome-store-api'
 import config from './config'
+import cors from 'cors'
 
 const app = express()
+
+app.use(cors())
 
 app.use(parser.urlencoded({ extended: false }))
 
