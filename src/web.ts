@@ -1,5 +1,6 @@
 import express from 'express'
 import next from 'next'
+import cors from 'cors'
 import config from './config'
 import { resolve } from 'path'
 
@@ -16,6 +17,7 @@ app
   .prepare()
   .then(() => {
     server = express()
+    server.use(cors())
     server.all('*', (req, res) => handle(req, res))
     server.listen(port, (err) => {
       if (err) {
