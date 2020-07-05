@@ -5,7 +5,7 @@ import { resolve } from 'path'
 
 const port = config.port.web
 const app = next({
-  dir: resolve(__dirname, './web'),
+  dir: resolve(__dirname, 'web'),
   dev: true
 })
 
