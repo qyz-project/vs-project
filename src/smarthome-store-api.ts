@@ -160,7 +160,7 @@ export function partyModeOff (): IDevice[] {
 export function readMode (): IDevice[] {
   for (const d of data.devices) {
     switch (d.id) {
-      case 1: {
+      case 3: {
         d.value = 0
         break
       }
@@ -184,7 +184,7 @@ export function sleepMode (): IDevice[] {
         d.value = 0
         break
       }
-      case 1: {
+      case 3: {
         d.value = 0
         break
       }
