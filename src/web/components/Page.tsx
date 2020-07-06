@@ -5,7 +5,7 @@ import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Head from 'next/head'
 
-export default function Page (props: { children?: JSX.Element | never[] }) {
+export default function Page (props: { children?: JSX.Element | JSX.Element[] | never[] }) {
   return (
     <>
       <Head>
