@@ -5,7 +5,7 @@ import Nav from 'react-bootstrap/Nav'
 import NavDropdown from 'react-bootstrap/NavDropdown'
 import Head from 'next/head'
 
-export default function Page (props: { children?: JSX.Element | JSX.Element[] | never[] }) {
+export default function Page (props: { children?: JSX.Element | never[] }) {
   return (
     <>
       <Head>
@@ -18,15 +18,19 @@ export default function Page (props: { children?: JSX.Element | JSX.Element[] | 
         <script src="https://unpkg.com/react/umd/react.production.min.js" crossOrigin="true"></script>
       </Head>
       <Navbar bg="light" expand="lg">
-        <Navbar.Brand href="#home">VS Project</Navbar.Brand>
+        <Navbar.Brand>
+          <Link href="/">
+            <a>VS Project</a>
+          </Link>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Link href="/">
-              <Nav.Link>
-                Weather
-              </Nav.Link>
-            </Link>
+            <Nav.Link>
+              <Link href="/">
+                <a>Weather</a>
+              </Link>
+            </Nav.Link>
             <NavDropdown title="SmartHome" id="basic-nav-dropdown">
               <NavDropdown.Item>
                 <Link href="/room?id=9">
