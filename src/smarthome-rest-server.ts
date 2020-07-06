@@ -89,9 +89,9 @@ app.put('/mode/read', (req, res) => {
   res.end(JSON.stringify(d, undefined, 4))
 })
 
-// sleep mode
+// sleep mode on
 app.put('/mode/sleep', (req, res) => {
-  const d = api.readMode()
+  const d = api.sleepMode()
   res.end(JSON.stringify(d, undefined, 4))
 })
 
