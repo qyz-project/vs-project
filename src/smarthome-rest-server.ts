@@ -7,8 +7,8 @@ import cors from 'cors'
 const app = express()
 
 app.use(cors())
-
 app.use(parser.urlencoded({ extended: false }))
+app.use(parser.json())
 
 // get all device info
 app.get('/device', (req, res) => {
