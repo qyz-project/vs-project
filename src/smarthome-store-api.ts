@@ -26,7 +26,7 @@ export async function sync () {
   }
 }
 
-export function addDevice (d: IDeviceWithoutId): void {
+export function addDevice (d: IDeviceWithoutId): IDevice {
   let id = 0
   if (data.devices) {
     for (const device of data.devices) {
@@ -36,6 +36,7 @@ export function addDevice (d: IDeviceWithoutId): void {
   }
   data.devices.push({ ...d, id } as IDevice)
   motified = true
+  return { ...d, id }
 }
 
 export function removeDevice (id: number): void {
