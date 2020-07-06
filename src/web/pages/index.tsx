@@ -1,7 +1,7 @@
 import React from 'react'
 import Page from '../components/Page'
 import { Weather } from '../libs/weather-ws-client'
-import { Forecast } from '../../src/WeatherData'
+import { Forecast } from '../../WeatherData'
 import Card from 'react-bootstrap/Card'
 import Container from 'react-bootstrap/Container'
 import Jumbotron from 'react-bootstrap/Jumbotron'
