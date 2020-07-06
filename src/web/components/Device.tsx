@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button'
 import ProgressBar from 'react-bootstrap/ProgressBar'
 import axios from 'axios'
 import config from '../../config'
+
 const rootUrl = 'http://' + config.host + ':' + config.port.smart
 
 function normalize (v: number) {
