@@ -7,6 +7,7 @@ import Jumbotron from 'react-bootstrap/Jumbotron'
 import axios from 'axios'
 import config from '../../config'
 import { IDevice } from '../../SmartDevice'
+import Col from 'react-bootstrap/Col'
 
 const rootUrl = 'http://' + config.host + ':' + config.port.smart
 
@@ -27,12 +28,16 @@ export default function DevicePage () {
     }
   })
 
-  const deviceComponent = devices.map((d, i) => <Device key={String(i)} device={d} />)
+  const deviceComponent = devices.map((d, i) => (
+    <Col md={4} key={String(i)} className="mb-3">
+      <Device device={d} />
+    </Col>)
+  )
 
   return (
     <Page>
       <Container>
-        <Row md={1}>
+        <Row>
           <Jumbotron>
             <h1>All Devices</h1>
           </Jumbotron>
