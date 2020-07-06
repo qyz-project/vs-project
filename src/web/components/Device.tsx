@@ -13,15 +13,21 @@ function normalize (v: number) {
 
 export default function Device (props: {device: IDevice}) {
   let dt = 1
+  let pText = '+'
+  let mText = '-'
   switch (props.device.type) {
     case 'dimmer':
       dt = 0.1
       break
     case 'jalousien':
       dt = 0.2
+      pText = 'UP'
+      mText = 'DOWN'
       break
     case 'light':
       dt = 1
+      pText = 'ON'
+      mText = 'OFF'
   }
   const minus = () => {
     axios.put(rootUrl + '/device/' + props.device.id + '/value/' + normalize(props.device.value - dt))
@@ -32,14 +38,14 @@ export default function Device (props: {device: IDevice}) {
   }
 
   return (
-    <Card style={{ width: '18rem' }}>
+    <Card className="mb-3">
       <Card.Body>
-        <Card.Title>[{props.device.id}] {props.device.name}</Card.Title>
+        <Card.Title>{props.device.name} [{props.device.id}]</Card.Title>
         <ProgressBar animated now={props.device.value * 100} />
       </Card.Body>
       <Card.Footer>
-        <Button variant="secondary" onClick={minus}>-</Button>
-        <Button variant="primary" onClick={add}>+</Button>
+        <Button variant="secondary" onClick={minus}>{mText}</Button>
+        <Button variant="primary" onClick={add}>{pText}</Button>
       </Card.Footer>
     </Card>
   )
