@@ -1,6 +1,6 @@
 // configuration
 export default {
-  host: 'localhost',
+  host: '40.68.119.62',
   port: {
     weather: 8081,
     smart: 8082,
