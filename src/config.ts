@@ -7,7 +7,7 @@ export default {
     web: 8080
   },
   api: {
-    weather: '47ebbc8d3c411548c79f8954777f9792'
+    weather: '43ad483eb278b4214c8139d6c9c5f1d0'
   },
   defaultCity: 'vienna'
 }
